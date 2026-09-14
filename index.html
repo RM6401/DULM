@@ -17,7 +17,8 @@
       justify-content: center;
       align-items: center;
       font-family: 'Quicksand', 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #ffc0cb 0%, #e6e6fa 50%, #d8bfd8 100%);
+      /* Changed to deeper pink, purple, and violet */
+      background: linear-gradient(135deg, #ff1493 0%, #800080 50%, #4b0082 100%);
       background-size: 200% 200%;
       animation: gradientBG 6s ease infinite alternate;
     }
@@ -124,7 +125,8 @@
       <h1>Do you love me?</h1>
       <div class="btn-container">
         <button class="btn btn-yes" onclick="showPage2()">Yes</button>
-        <button class="btn btn-no" onclick="showPage2()">No</button>
+        <!-- Changed onclick to trigger the random popup function -->
+        <button class="btn btn-no" onclick="showRandomMessage()">No</button>
       </div>
     </div>
 
@@ -139,6 +141,21 @@
     function showPage2() {
       document.getElementById('page1').classList.add('hidden');
       document.getElementById('page2').classList.remove('hidden');
+    }
+
+    // New function for the 'No' button behavior
+    function showRandomMessage() {
+      const messages = [
+        "Aww", 
+        "Don't lie", 
+        "I know you are lying", 
+        "I know deep down you love me~", 
+        "Love you", 
+        "😍", 
+        "No~~"
+      ];
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      alert(messages[randomIndex]);
     }
   </script>
 
