@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+        /* Custom animations */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-pink-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white rounded-3xl shadow-xl p-8 max-w-md w-full text-center border-4 border-pink-200">
+        
+        <!-- STEP 1: Initial Question -->
+        <div id="step-1" class="fade-in">
+            <h1 class="text-3xl font-bold text-pink-500 mb-6 flex items-center justify-center gap-2">
+                Do you love me? 🌸
+            </h1>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="goToStep('step-2')" class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-6 rounded-full transition-transform hover:scale-110 shadow-md">
+                    Yes! 💖
+                </button>
+                <button onclick="goToStep('result-no')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-3 px-6 rounded-full transition-transform hover:scale-110 shadow-md">
+                    No 😔
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 2: Follow-up Question -->
+        <div id="step-2" class="hidden fade-in">
+            <h1 class="text-2xl font-bold text-pink-500 mb-6 flex justify-center gap-2">
+                Yay! But why do you love me? ✨
+            </h1>
+            <div class="flex flex-col gap-4">
+                <button onclick="goToStep('result-pretty')" class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-6 rounded-full transition-transform hover:scale-105 shadow-md">
+                    Because I am pretty 💅
+                </button>
+                <button onclick="goToStep('result-kind')" class="bg-rose-400 hover:bg-rose-500 text-white font-bold py-3 px-6 rounded-full transition-transform hover:scale-105 shadow-md">
+                    Because I am kind 🥺
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div id="result-no" class="hidden fade-in">
+            <h1 class="text-4xl font-bold text-gray-500 mb-4">(╥﹏╥)</h1>
+            <p class="text-xl text-gray-600 font-bold">Why not...</p>
+            <button onclick="resetApp()" class="mt-6 text-sm text-pink-400 hover:text-pink-600 underline">Start over</button>
+        </div>
+
+        <div id="result-pretty" class="hidden fade-in">
+            <h1 class="text-3xl font-bold text-pink-600 mb-2">>&lt;</h1>
+            <p class="text-xl text-pink-500 font-bold">you only see face ga</p>
+            <button onclick="resetApp()" class="mt-6 text-sm text-pink-400 hover:text-pink-600 underline">Start over</button>
+        </div>
+
+        <div id="result-kind" class="hidden fade-in">
+            <h1 class="text-4xl font-bold text-pink-500 mb-2">awww 🥰</h1>
+            <p class="text-lg text-pink-400 font-bold">you're so sweet!</p>
+            <button onclick="resetApp()" class="mt-6 text-sm text-pink-400 hover:text-pink-600 underline">Start over</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Array of all possible view IDs to manage visibility easily
+        const allViews = ['step-1', 'step-2', 'result-no', 'result-pretty', 'result-kind'];
+
+        function goToStep(stepId) {
+            // Hide all views
+            allViews.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.add('hidden');
+                    // Remove animation class so it triggers again when shown
+                    el.classList.remove('fade-in'); 
+                }
+            });
+
+            // Show the target view
+            const targetView = document.getElementById(stepId);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+                // Small timeout to allow the display:block to apply before re-adding animation
+                setTimeout(() => {
+                    targetView.classList.add('fade-in');
+                }, 10);
+            }
+        }
+
+        // Helper to easily restart the flow
+        function resetApp() {
+            goToStep('step-1');
+        }
+    </script>
+</body>
+</html>
