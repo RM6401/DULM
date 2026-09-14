@@ -17,10 +17,17 @@
       justify-content: center;
       align-items: center;
       font-family: 'Quicksand', 'Segoe UI', system-ui, sans-serif;
-      /* Changed to deeper pink, purple, and violet */
       background: linear-gradient(135deg, #ff1493 0%, #800080 50%, #4b0082 100%);
       background-size: 200% 200%;
       animation: gradientBG 6s ease infinite alternate;
+      transition: background 0.5s ease;
+    }
+
+    /* New class for the significant background change when "Yes" is pressed */
+    body.yes-background {
+      background: linear-gradient(135deg, #ff0844 0%, #ffb199 50%, #ff0844 100%);
+      background-size: 200% 200%;
+      animation: gradientBG 4s ease infinite alternate;
     }
 
     @keyframes gradientBG {
@@ -125,7 +132,6 @@
       <h1>Do you love me?</h1>
       <div class="btn-container">
         <button class="btn btn-yes" onclick="showPage2()">Yes</button>
-        <!-- Changed onclick to trigger the random popup function -->
         <button class="btn btn-no" onclick="showRandomMessage()">No</button>
       </div>
     </div>
@@ -139,11 +145,14 @@
 
   <script>
     function showPage2() {
+      // Hide page 1, show page 2
       document.getElementById('page1').classList.add('hidden');
       document.getElementById('page2').classList.remove('hidden');
+      
+      // Change the background significantly
+      document.body.classList.add('yes-background');
     }
 
-    // New function for the 'No' button behavior
     function showRandomMessage() {
       const messages = [
         "Aww", 
