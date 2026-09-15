@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Do You Love Me? ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -191,12 +194,28 @@
     <div id="page2" class="page hidden">
       <video src="Yes.webm" autoplay muted loop></video>
       <h1 class="love-text">♡ Love you too ♡</h1>
+      <div class="btn-container">
+        <button class="btn btn-yes" onclick="showPage4()">I want to fuck you</button>
+        <button class="btn btn-no" onclick="showPage5()">Just purely love you</button>
+      </div>
     </div>
 
     <!-- Third Page (No) -->
     <div id="page3" class="page hidden">
       <video src="No.webm" autoplay muted loop></video>
       <button class="btn btn-no" onclick="goBack()">OK...</button>
+    </div>
+
+    <!-- Fourth Page (I want to fuck you) -->
+    <div id="page4" class="page hidden">
+      <video src="I want to fuck you too.webm" autoplay muted loop></video>
+      <h1 class="love-text">I want to fuck you too 💦🍑🍆🍒💦</h1>
+    </div>
+
+    <!-- Fifth Page (Just purely love you) -->
+    <div id="page5" class="page hidden">
+      <video src="Ho ba.webm" autoplay muted loop></video>
+      <h1 class="love-text">Ho ba...</h1>
     </div>
 
     <!-- Modal Popup -->
@@ -248,6 +267,16 @@
     function showPage3() {
       document.getElementById('page1').classList.add('hidden');
       document.getElementById('page3').classList.remove('hidden');
+    }
+
+    function showPage4() {
+      document.getElementById('page2').classList.add('hidden');
+      document.getElementById('page4').classList.remove('hidden');
+    }
+
+    function showPage5() {
+      document.getElementById('page2').classList.add('hidden');
+      document.getElementById('page5').classList.remove('hidden');
     }
 
     function goBack() {
