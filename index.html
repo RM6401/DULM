@@ -125,30 +125,11 @@
       font-weight: 700;
     }
 
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
-    }
-
-    .modal-box {
-      background: white;
-      padding: 2rem 2.5rem;
-      border-radius: 24px;
-      text-align: center;
-      max-width: 300px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .modal-box p {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #8a2be2;
-      margin-bottom: 1.5rem;
+    video {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 16px;
+      display: block;
     }
 
     .btn-ok {
@@ -179,52 +160,38 @@
       <h1>Do you love me?</h1>
       <div class="btn-container">
         <button class="btn btn-yes" onclick="showPage2()">Yes</button>
-        <button class="btn btn-no" onclick="showRandomMessage()">No</button>
+        <button class="btn btn-no" onclick="showPage3()">No</button>
       </div>
     </div>
 
-    <!-- Second Page -->
+    <!-- Second Page (Yes) -->
     <div id="page2" class="page hidden">
-      <div class="icon">💖</div>
+      <video src="Yes.webm" autoplay muted loop></video>
       <h1 class="love-text">♡ Love you too ♡</h1>
     </div>
 
-    <!-- Modal Popup -->
-    <div id="modal" class="modal-overlay hidden">
-      <div class="modal-box">
-        <p id="modalMessage"></p>
-        <button class="btn-ok" onclick="dismissModal()">OK...</button>
-      </div>
+    <!-- Third Page (No) -->
+    <div id="page3" class="page hidden">
+      <video src="No.webm" autoplay muted loop></video>
+      <button class="btn btn-no" onclick="goBack()">OK...</button>
     </div>
   </div>
 
   <script>
     function showPage2() {
-      // Hide page 1, show page 2
       document.getElementById('page1').classList.add('hidden');
       document.getElementById('page2').classList.remove('hidden');
-      
-      // Change the background significantly
       document.body.classList.add('yes-background');
     }
 
-    function showRandomMessage() {
-      const messages = [
-        "Aww", 
-        "Don't lie", 
-        "I know you are lying", 
-        "I know deep down you love me~", 
-        "Love you", 
-        "😍", 
-        "No~~"
-      ];
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      document.getElementById('modalMessage').textContent = messages[randomIndex];
-      document.getElementById('modal').classList.remove('hidden');
+    function showPage3() {
+      document.getElementById('page1').classList.add('hidden');
+      document.getElementById('page3').classList.remove('hidden');
     }
 
-    function dismissModal() {
-      document.getElementById('modal').classList.add('hidden');
+    function goBack() {
+      document.getElementById('page3').classList.add('hidden');
+      document.getElementById('page1').classList.remove('hidden');
     }
   </script>
 
